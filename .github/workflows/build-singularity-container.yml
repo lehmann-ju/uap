@@ -68,5 +68,5 @@ jobs:
       run: |
         echo ${SINGULARITY_TOKEN} | singularity remote login
         singularity remote status
-        singularity push -U ${SINGULARITY_CONTAINER} library://lehmanju/default/uap.sif:latest
+        singularity push -U ${SINGULARITY_CONTAINER} library://boll3/default/uap.sif:latest
 
