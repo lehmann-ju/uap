@@ -5,7 +5,7 @@ Stage: build
 %setup
 
 %files
-	environment.yaml
+	environment.yml
 
 %post
 
@@ -40,7 +40,7 @@ Stage: build
 
     # COMMENT ich wuerde die packages immer auf einmal installieren 
     # also in einem conda install befehl oder gleich beim conda create
-    bash -c ". /etc/profile.d/conda.sh; conda env create -f environment.yaml"
+    bash -c ". /etc/profile.d/conda.sh; conda env create -f environment.yml"
 
     # activate the conda environment
     conda activate uap_python3_v1.0
