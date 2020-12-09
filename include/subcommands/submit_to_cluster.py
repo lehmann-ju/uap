@@ -165,7 +165,7 @@ def main(args):
             submit_script = submit_script.replace(placeholder, value)
 
         task_names = [str(task) for task in tasks_left[step_name]]
-        print( "\n".join( task_names))
+
         submit_script = submit_script.replace(
             "#{ARRAY_JOBS}", " ".join(
                 "'" + task + "'" for task in task_names))
@@ -173,18 +173,25 @@ def main(args):
         submit_script = submit_script.replace(
             "#{UAP_CONFIG}", yaml.dump(p.config))
 
-        if( p.get_cluster_type() == "singularity_qstat"):
-            command = p.get_cluster_command( 'run_command')
-            command.append( p.config['container']['container_file'])
-        else:
-            command = ['exec', os.path.join(p.get_uap_path(), 'uap')]
 
-        print( "\n", p.get_cluster_type(), "\n")
-        print( command, "\n")
+        # Retrieve container file and options if uap is run within a singularity container
+        if step._options['_singularity_container']:
+            singularity_container = step._options['_singularity_container']
+        else:
+            singularity_container = p.config['cluster']['singularity_container']
+        if step._options['_singularity_options']:
+            singularity_options = step._options['_singularity_options']
+        else:
+            singularity_options = p.config['cluster']['singularity_options']
         
+        if( singularity_container):
+            command = [ 'singularity', 'run', singularity_container, singularity_options, '-vv' ]
+        else:
+            command = [ 'exec', os.path.join(p.get_uap_path(), 'uap'), '-vv']
+
         if p.args.debugging:
             command.append('--debugging')
-        command.extend(['-vv', '<(cat <&123)', 'run-locally'])
+        command.extend(['<(cat <&123)', 'run-locally'])
         if p.args.force:
             command.append('--force')
 
@@ -193,6 +200,8 @@ def main(args):
 
         submit_script = submit_script.replace("#{COMMAND}", ' '.join(command))
 
+
+        print( "\n\nSubmit Script: \n", submit_script, "\n\n\n")
         # create the output directory if it doesn't exist yet
         tasks = tasks_left[step_name]
         for task in tasks:
@@ -253,8 +262,7 @@ def main(args):
             f.write(submit_script)
         submit_script_args.append(submit_script_path)
 
-        print( "\n\n\n", " ".join( submit_script_args), "\n\n")
-
+        print( " ".join(submit_script.args), "\n")
         process = None
         try:
             process = subprocess.Popen(
@@ -274,7 +282,7 @@ def main(args):
         job_id = re.search(
             p.get_cluster_command('parse_job_id'), response)
         if not job_id:
-            raise UAPError('Got unexpected from %s resposne: %s' %
+            raise UAPError('Got unexpected from %s response: %s' %
                            (p.get_cluster_type(), response))
         else:
             job_id = job_id.group(1)
