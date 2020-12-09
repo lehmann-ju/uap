@@ -46,7 +46,7 @@ Stage: final
     # bash needed since the runscript uses sh otherwise which seems
     # insufficient for sourcing the conda shell environment and
     # activation of the env
-    #apt-get install --yes bash
+    apt-get install --yes bash
     #apt-get install --yes wget
     #apt-get install --yes tar
     #apt-get install --yes bzip2
