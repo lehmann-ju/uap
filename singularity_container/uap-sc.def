@@ -50,15 +50,6 @@ Stage: build
     
     # install uap
     ./opt/uap/bootstrap.sh
-   
-   # COMMENT create scripts to use qsub/qstat via ssh
-   cat > /usr/bin/ssh_dummy.sh << EOF
-#!/bin/bash
-ssh \$(hostname) \$(basename \$0) \$@ 2> /dev/null
-EOF
-   chmod ugo+x /usr/bin/ssh_dummy.sh
-   ln -s /usr/bin/ssh_dummy.sh /usr/bin/qsub
-   ln -s /usr/bin/ssh_dummy.sh /usr/bin/qstat
 
 %environment
 
