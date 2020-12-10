@@ -19,24 +19,23 @@ slurm:
     parse_job_id: 'Submitted batch job (\d+)'
 
 singularity_qstat:
-    identity_test: ['sbatch', '--version']
-    identity_answer: 'slurm'
-    submit: 'sbatch'
-    stat: 'squeue'
-    last_error: 'cluster/util_scripts/slurm_first_error.sh'
-    template: 'cluster/submit-scripts/sbatch-template.sh'
-    default_options: '--cpus-per-task=#{CORES}'
-    hold_jid: '--dependency=afterany:%s'
-    hold_jid_separator: ':'
-    array_start_index: 0
-    array_job: '--array=0-%s'
-    array_job_wquota: '--array=0-%s%%%s'
-    array_out_index: '%A_%a'
-    array_task_id: 'SLURM_ARRAY_TASK_ID'
-    set_job_name: '--job-name=%s'
+    identity_test: ['qstat', '-help']
+    identity_answer: 'Wrapper for UGE'
+    submit: 'qsub'
+    stat: 'qstat'
+    last_error: ''
+    template: 'cluster/submit-scripts/qsub-template.sh'
+    hold_jid: '-hold_jid'
+    hold_jid_separator: ';'
+    array_start_index: 1
+    array_job: ['-t', '1-%s']
+    array_job_wquota: ['-t', '1-%s', '-tc', '%s']
+    array_out_index: '\$TASK_ID'
+    array_task_id: '((SGE_TASK_ID-1))'
+    set_job_name: '-N'
     set_stderr: '-e'
     set_stdout: '-o'
-    parse_job_id: 'Submitted batch job (\d+)'
+    parse_job_id: 'Your job-array (\d+)'
 
 qstat:
     identity_test: ['qstat', '-help']
