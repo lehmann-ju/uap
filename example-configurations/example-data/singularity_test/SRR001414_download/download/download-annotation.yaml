@@ -1,0 +1,897 @@
+config:
+  base_working_directory: /home/lehmanju
+  cluster:
+    default_job_quota: 0
+    default_post_job_command: ''
+    default_pre_job_command: ''
+    default_submit_options: ''
+    singularity_container: ''
+    singularity_options: ''
+  destination_path: /home/lehmanju/test
+  id: test-download.yaml
+  lmod: {}
+  steps:
+    SRR001414_download (raw_url_source):
+      uncompress: true
+      url: http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+  tools:
+    basename:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: basename
+    cat:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: cat
+    collect_scs:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/collect_scs.py
+    compare_secure_hashes:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/compare_secure_hashes.py
+    cp:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: cp
+    curl:
+      exit_code: 0
+      get_version: --version
+      ignore_version: false
+      path: curl
+    cut:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: cut
+    date:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: date
+    dd:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: dd
+    dirname:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: dirname
+    discardLargeSplitsAndPairs:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/discardLargeSplitsAndPairs.py
+    du:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: du
+    fix_cutadapt:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/fix_cutadapt.py
+    fix_make_segemehl_output_cufflinks_compatible:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/fix_make_segemehl_output_cufflinks_compatible.py
+    fix_qnames:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/fix_qnames.py
+    fix_s2c:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/fix_s2c.py
+    head:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: head
+    ln:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: ln
+    ls:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: ls
+    make_segemehl_output_cufflinks_compatible:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/make_segemehl_output_cufflinks_compatible.py
+    mate_pair_strand_switch:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/mate_pair_strand_switch.py
+    merge_genecounts:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/merge_genecounts.py
+    merge_numpy_arrays:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/merge_numpy_arrays.py
+    mkdir:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: mkdir
+    mkfifo:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: mkfifo
+    mv:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: mv
+    paste:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: paste
+    pigz:
+      exit_code: 0
+      get_version: --version
+      ignore_version: false
+      path: pigz
+    post_cufflinks_merge:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/post_cufflinks_merge.py
+    post_sawdust:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/post_sawdust.py
+    printf:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: printf
+    pwd:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: pwd
+    random_sample_fastq:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/random_sample_fastq.py
+    remove_reads_segemehl:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/remove_reads_segemehl.py
+    rm:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: rm
+    s2c:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/s2c.py
+    segemehl_2017_reformatCigar:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/segemehl_2017_reformatCigar.py
+    seq:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: seq
+    sleep:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: sleep
+    sort:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: sort
+    split_fastq:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/split_fastq.py
+    split_fastq2:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/split_fastq2.py
+    tail:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: tail
+    tcount2gcount:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --help
+      ignore_version: false
+      path:
+        - /opt/uap/python_env/bin/python
+        - /opt/uap/tools/tcount2gcount.py
+    tee:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: tee
+    tr:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: tr
+    uniq:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: uniq
+    wc:
+      atomatically_configured: true
+      exit_code: 0
+      get_version: --version
+      ignore_version: true
+      path: wc
+end_time: 2020-12-11 10:10:34.156556
+git_diff: ''
+git_status: ''
+git_tag: heads/fraunhofer_uge_support-0-g97680aa3
+git_version: git version 2.17.0
+pid: 1198536
+pipeline_log:
+  log:
+    - '[2020-12-11 10:10:04] Launched curl --output temp-0SRR001414.fastq.gz http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+      in /home/lehmanju/test/temp/temp-SRR001414_download-download-201211-101004-597348
+      as PID 1198662 (curl).'
+    - '[2020-12-11 10:10:04] Launched a copy process with PID 1198663 to capture stdout
+      of PID 1198662.'
+    - '[2020-12-11 10:10:04] Launched a copy process with PID 1198664 to capture stderr
+      of PID 1198662.'
+    - '[2020-12-11 10:10:04] Now launching process watcher and waiting for all child
+      processes to exit.'
+    - '[2020-12-11 10:10:31] curl (PID 1198662) has exited with exit code 0.'
+    - '[2020-12-11 10:10:31] [stream listener for stdout of PID 1198662] (PID 1198663)
+      has exited with exit code 0.'
+    - '[2020-12-11 10:10:31] [stream listener for stderr of PID 1198662] (PID 1198664)
+      has exited with exit code 0.'
+    - '[2020-12-11 10:10:32] Launched pigz --decompress --stdout --processes 1 temp-0SRR001414.fastq.gz
+      in /home/lehmanju/test/temp/temp-SRR001414_download-download-201211-101004-597348
+      as PID 1198712 (pigz).'
+    - '[2020-12-11 10:10:32] Launched a copy process with PID 1198713 to capture stdout
+      of PID 1198712.'
+    - '[2020-12-11 10:10:32] Launched a copy process with PID 1198714 to capture stderr
+      of PID 1198712.'
+    - '[2020-12-11 10:10:32] Launched dd bs=256k of=SRR001414.fastq in /home/lehmanju/test/temp/temp-SRR001414_download-download-201211-101004-597348
+      as PID 1198715 (dd).'
+    - '[2020-12-11 10:10:32] Launched a copy process with PID 1198716 to capture stdout
+      of PID 1198715.'
+    - '[2020-12-11 10:10:32] Launched a copy process with PID 1198717 to capture stderr
+      of PID 1198715.'
+    - '[2020-12-11 10:10:32] Now launching process watcher and waiting for all child
+      processes to exit.'
+    - '[2020-12-11 10:10:32] [stream listener for stdout of PID 1198715] (PID 1198716)
+      has exited with exit code 0.'
+    - '[2020-12-11 10:10:33] pigz (PID 1198712) has exited with exit code 0.'
+    - '[2020-12-11 10:10:33] [stream listener for stderr of PID 1198712] (PID 1198714)
+      has exited with exit code 0.'
+    - '[2020-12-11 10:10:33] dd (PID 1198715) has exited with exit code 0.'
+    - '[2020-12-11 10:10:33] Now killing 1198712, the predecessor of 1198715 (dd).'
+    - '[2020-12-11 10:10:33] Couldn''t kill 1198712: no such process.'
+    - '[2020-12-11 10:10:33] [stream listener for stderr of PID 1198715] (PID 1198717)
+      has exited with exit code 0.'
+    - '[2020-12-11 10:10:33] [stream listener for stdout of PID 1198712] (PID 1198713)
+      has exited with exit code 0.'
+  ok_to_fail: !!set
+    1198712: null
+  process_watcher:
+    host io stats:
+      busy_time: 28
+      read_bytes: 0
+      read_count: 0
+      read_merged_count: 0
+      read_time: 0
+      write_bytes: 356352
+      write_count: 7
+      write_merged_count: 40
+      write_time: 17
+    host net stats:
+      bytes_recv: 809
+      bytes_sent: 747
+      dropin: 3
+      dropout: 0
+      errin: 0
+      errout: 0
+      packets_recv: 7
+      packets_sent: 4
+    max:
+      1198536 (uap):
+        cpu_percent: 1.9
+        memory_percent: 0.25353180777153517
+        rss: 41656320
+        threads: 2
+        vms: 677449728
+      1198662 (curl):
+        cpu_percent: 7.5
+        memory_percent: 0.042404877583026676
+        rss: 6967296
+        threads: 1
+        vms: 101658624
+      1198663 ([stream listener for stdout of PID 1198662]):
+        cpu_percent: 0.0
+        memory_percent: 0.16797417116662774
+        rss: 27598848
+        threads: 1
+        vms: 681648128
+      1198664 ([stream listener for stderr of PID 1198662]):
+        cpu_percent: 0.0
+        memory_percent: 0.16797417116662774
+        rss: 27598848
+        threads: 1
+        vms: 681648128
+      1198665 (watcher):
+        cpu_percent: 32.2
+        memory_percent: 0.17238667165586685
+        rss: 28323840
+        threads: 1
+        vms: 677449728
+      1198712 (pigz):
+        cpu_percent: 54.1
+        memory_percent: 0.008351342733870627
+        rss: 1372160
+        threads: 1
+        vms: 11055104
+      1198713 ([stream listener for stdout of PID 1198712]):
+        cpu_percent: 46.6
+        memory_percent: 0.22064995384325053
+        rss: 36253696
+        threads: 1
+        vms: 685719552
+      1198714 ([stream listener for stderr of PID 1198712]):
+        cpu_percent: 0.0
+        memory_percent: 0.16797417116662774
+        rss: 27598848
+        threads: 1
+        vms: 681648128
+      1198715 (dd):
+        cpu_percent: 7.5
+        memory_percent: 0.014608617438949815
+        rss: 2400256
+        threads: 1
+        vms: 6979584
+      1198717 ([stream listener for stderr of PID 1198715]):
+        cpu_percent: 0.0
+        memory_percent: 0.16797417116662774
+        rss: 27598848
+        threads: 1
+        vms: 681648128
+      1198718 (watcher):
+        cpu_percent: 14.4
+        memory_percent: 0.1731844118573112
+        rss: 28454912
+        threads: 1
+        vms: 677449728
+      host cpu percentages:
+        data_recv: 809.0 B
+        data_sent: 747.0 B
+        guest: 0.0
+        guest_nice: 0.0
+        idle: 58.952857515544046
+        iowait: 0.07757358388739317
+        irq: 0.0
+        nice: 0.025764855652261123
+        read_data: 0.0 B
+        rss unit: 157.7 MB
+        softirq: 3.5647126282569572
+        steal: 0.0
+        system: 10.14481368449907
+        user: 27.23453342068472
+        vms unit: 3.2 GB
+        write_data: 348.0 KB
+      sum:
+        cpu_percent: 117.5
+        memory_percent: 1.0062744759781728
+        rss: 165335040.0
+        threads: 8.0
+        vms: 3421949952.0
+  processes:
+    - args:
+        - curl
+        - --output
+        - temp-0SRR001414.fastq.gz
+        - http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+      end_time: 2020-12-11 10:10:31.318772
+      exit_code: 0
+      hints: {}
+      name: curl
+      pid: 1198662
+      start_time: 2020-12-11 10:10:04.615168
+      stderr_copy:
+        end_time: 2020-12-11 10:10:31.331224
+        exit_code: 0
+        length: 2450
+        lines: 3
+        name: '[stream listener for stderr of PID 1198662]'
+        pid: 1198664
+        report_path: stderr-report-0.txt
+        sha256: e04c4eb346458293f064dcb371223b9a05990e3bfc72e78d7a13d9c68d90c9be
+        start_time: 2020-12-11 10:10:04.617755
+        tail: " 24.1M   61 14.7M    0     0  1005k      0  0:00:24  0:00:15  0:00:09\
+          \ 1133k\r 65 24.1M   65 15.8M    0     0  1013k      0  0:00:24  0:00:16\
+          \  0:00:08 1134k\r 70 24.1M   70 16.9M    0     0  1021k      0  0:00:24\
+          \  0:00:17  0:00:07 1137k\r 75 24.1M   75 18.1M    0     0  1027k      0\
+          \  0:00:24  0:00:18  0:00:06 1139k\r 79 24.1M   79 19.2M    0     0  1032k\
+          \      0  0:00:23  0:00:19  0:00:04 1134k\r 82 24.1M   82 19.9M    0   \
+          \  0   985k      0  0:00:25  0:00:20  0:00:05  933k\r 82 24.1M   82 19.9M\
+          \    0     0   940k      0  0:00:26  0:00:21  0:00:05  733k\r 82 24.1M \
+          \  82 19.9M    0     0   900k      0  0:00:27  0:00:22  0:00:05  538k\r\
+          \ 83 24.1M   83 20.1M    0     0   893k      0  0:00:27  0:00:23  0:00:04\
+          \  409k\r 87 24.1M   87 21.1M    0     0   901k      0  0:00:27  0:00:24\
+          \  0:00:03  399k\r 92 24.1M   92 22.2M    0     0   911k      0  0:00:27\
+          \  0:00:25  0:00:02  550k\r 96 24.1M   96 23.3M    0     0   919k      0\
+          \  0:00:26  0:00:26 --:--:--  812k\r100 24.1M  100 24.1M    0     0   925k\
+          \      0  0:00:26  0:00:26 --:--:-- 1064k\n"
+      stderr_path: null
+      stdout_copy:
+        end_time: 2020-12-11 10:10:31.325900
+        exit_code: 0
+        length: 0
+        lines: 0
+        name: '[stream listener for stdout of PID 1198662]'
+        pid: 1198663
+        report_path: stdout-report-0.txt
+        sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        start_time: 2020-12-11 10:10:04.616227
+        tail: ''
+      stdout_path: null
+    - args:
+        - pigz
+        - --decompress
+        - --stdout
+        - --processes
+        - '1'
+        - temp-0SRR001414.fastq.gz
+      end_time: 2020-12-11 10:10:33.593297
+      exit_code: 0
+      hints: {}
+      name: pigz
+      pid: 1198712
+      start_time: 2020-12-11 10:10:32.868061
+      stderr_copy:
+        end_time: 2020-12-11 10:10:33.594856
+        exit_code: 0
+        length: 0
+        lines: 0
+        name: '[stream listener for stderr of PID 1198712]'
+        pid: 1198714
+        report_path: stderr-report-1.txt
+        sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        start_time: 2020-12-11 10:10:32.869541
+        tail: ''
+      stderr_path: null
+      stdout_copy:
+        end_time: 2020-12-11 10:10:33.601934
+        exit_code: 0
+        length: 102357546
+        lines: 3894532
+        name: '[stream listener for stdout of PID 1198712]'
+        pid: 1198713
+        report_path: stdout-report-1.txt
+        sha256: facc91069c2ed0ba49749135abbb8d0b9612fb0a418f4bbbede3879796b09d58
+        start_time: 2020-12-11 10:10:32.868701
+        tail: '_3899:4:200:11:864/1
+
+          AGCTAAAAGCAAGACAGAAACACA
+
+          +
+
+          I,%%7%2''&''&-"-)&"&(''%,$$
+
+          @SRR001414.973625 USI-EAS21_0022_3899:4:200:805:890/1
+
+          AAGGACAAAAAACAACACCCAACA
+
+          +
+
+          %&$"(&&%%)%&%$%$%%%%%%+%
+
+          @SRR001414.973626 USI-EAS21_0022_3899:4:200:197:20/1
+
+          GNNNNNNNANNNNANNNNNAANNN
+
+          +
+
+          "!!!!!!!"!!!!''!!!!!*&!!!
+
+          @SRR001414.973627 USI-EAS21_0022_3899:4:200:917:376/1
+
+          AACCAACCACTCTACAACATAAAT
+
+          +
+
+          "0.''+/%+I""&"$$.%.0''%&''"
+
+          @SRR001414.973628 USI-EAS21_0022_3899:4:200:103:42/1
+
+          TGNNNNNNGNNNNGNNNNNCGNNN
+
+          +
+
+          4I!!!!!!I!!!!I!!!!!6I!!!
+
+          @SRR001414.973629 USI-EAS21_0022_3899:4:200:69:104/1
+
+          ACACAAAAAAAGACAACAAAAAAG
+
+          +
+
+          *"4$''%%%)"%"%"%"%+%+$"$"
+
+          @SRR001414.973630 USI-EAS21_0022_3899:4:200:592:331/1
+
+          CAAGCGCAATATGAACAACAAGAA
+
+          +
+
+          #+(#$"$$$"$""&/$%&0(%"0$
+
+          @SRR001414.973631 USI-EAS21_0022_3899:4:200:795:720/1
+
+          AAAATAACGCCAAACCACATCAAA
+
+          +
+
+          %"$%$)-%")&%%$&$()5"%($%
+
+          @SRR001414.973632 USI-EAS21_0022_3899:4:200:402:973/1
+
+          ACCAAACAACAACAACCGACGAGC
+
+          +
+
+          &"#+(#''"%#$%"&&)&".%"%#&
+
+          @SRR001414.973633 USI-EAS21_0022_3899:4:200:104:809/1
+
+          AGCATATTTACGACAAGCAACTCA
+
+          +
+
+          &$(*"''"#"8&"*&%%#$((''"(,
+
+          '
+      stdout_path: null
+    - args:
+        - dd
+        - bs=256k
+        - of=SRR001414.fastq
+      end_time: 2020-12-11 10:10:33.599415
+      exit_code: 0
+      hints: {}
+      name: dd
+      pid: 1198715
+      start_time: 2020-12-11 10:10:32.872236
+      stderr_copy:
+        end_time: 2020-12-11 10:10:33.600949
+        exit_code: 0
+        length: 97
+        lines: 3
+        name: '[stream listener for stderr of PID 1198715]'
+        pid: 1198717
+        report_path: stderr-report-2.txt
+        sha256: 3430cde81326afa5d8157a8572a9469046ba8be8dbc67464addfe0e87cd74e7a
+        start_time: 2020-12-11 10:10:32.873919
+        tail: '390+1 records in
+
+          390+1 records out
+
+          102357546 bytes (102 MB, 98 MiB) copied, 0,726482 s, 141 MB/s
+
+          '
+      stderr_path: null
+      stdout_copy:
+        end_time: 2020-12-11 10:10:32.876038
+        exit_code: 0
+        length: 0
+        lines: 0
+        name: '[stream listener for stdout of PID 1198715]'
+        pid: 1198716
+        report_path: stdout-report-2.txt
+        sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+        start_time: 2020-12-11 10:10:32.873070
+        tail: ''
+      stdout_path: null
+      use_stdin_of: 1198712
+run:
+  hostname: rz218
+  known_paths:
+    /home/lehmanju/test/SRR001414_download/download/SRR001414.fastq:
+      designation: output
+      label: SRR001414.fastq
+      modification time: 2020-12-11 10:10:33.592674
+      sha256: facc91069c2ed0ba49749135abbb8d0b9612fb0a418f4bbbede3879796b09d58
+      size: 102357546
+      type: step_file
+    stderr-report-0.txt:
+      designation: null
+      label: stderr-report-0.txt
+      type: file
+    stderr-report-1.txt:
+      designation: null
+      label: stderr-report-1.txt
+      type: file
+    stderr-report-2.txt:
+      designation: null
+      label: stderr-report-2.txt
+      type: file
+    stdout-report-0.txt:
+      designation: null
+      label: stdout-report-0.txt
+      type: file
+    stdout-report-1.txt:
+      designation: null
+      label: stdout-report-1.txt
+      type: file
+    stdout-report-2.txt:
+      designation: null
+      label: stdout-report-2.txt
+      type: file
+    temp-0SRR001414.fastq.gz:
+      designation: null
+      label: temp-0SRR001414.fastq.gz
+      type: file
+    watcher-report-0.yaml:
+      designation: null
+      label: watcher-report-0.yaml
+      type: file
+    watcher-report-1.yaml:
+      designation: null
+      label: watcher-report-1.yaml
+      type: file
+  output_directory: /home/lehmanju/test/SRR001414_download/download
+  platform: Linux-5.4.0-56-generic-x86_64-with-debian-buster-sid
+  private_info: {}
+  public_info: {}
+  run_id: download
+  structure:
+    execution group 0:
+      command 0: curl --output temp-0SRR001414.fastq.gz http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+    execution group 1:
+      pipe 0: pigz --decompress --stdout --processes 1 temp-0SRR001414.fastq.gz |
+        dd bs=256k of=SRR001414.fastq
+    output:
+      out/raw:
+        - SRR001414.fastq
+    parent hashes: {}
+    run_id: download
+    tool_versions:
+      compare_secure_hashes: "usage: compare_checksums.py [-h] [--version] --algorithm\n\
+        \                            {md5,sha1,sha224,sha256,sha384,sha512}\n    \
+        \                        --secure-hash PROVIDED_HASH_VALUE\n             \
+        \               file_to_hash\n\nThis script computes a secure hash and compares\
+        \ it with a given hash value. If they do not fit the input file will be renamed\
+        \ and a error message is output.\n\npositional arguments:\n  file_to_hash\
+        \          file to compare checksums for\n\noptional arguments:\n  -h, --help\
+        \            show this help message and exit\n  --version             show\
+        \ program's version number and exit\n  --algorithm {md5,sha1,sha224,sha256,sha384,sha512}\n\
+        \                        hashing algorithm to use\n  --secure-hash PROVIDED_HASH_VALUE\n\
+        \                        secure hash used for comparision"
+      curl: "curl 7.71.1 (x86_64-conda-linux-gnu) libcurl/7.71.1 OpenSSL/1.1.1h zlib/1.2.11\
+        \ libssh2/1.9.0 nghttp2/1.41.0\nRelease-Date: 2020-07-01\nProtocols: dict\
+        \ file ftp ftps gopher http https imap imaps pop3 pop3s rtsp scp sftp smb\
+        \ smbs smtp smtps telnet tftp \nFeatures: AsynchDNS GSS-API HTTP2 HTTPS-proxy\
+        \ IPv6 Kerberos Largefile libz NTLM NTLM_WB SPNEGO SSL TLS-SRP UnixSockets"
+      pigz: pigz 2.3.4
+  temp_directory: /home/lehmanju/test/temp/temp-SRR001414_download-download-201211-101004-597348
+  user: lehmanju
+start_time: 2020-12-11 10:10:04.610679
+step:
+  cores: 1
+  name: SRR001414_download
+  options:
+    _cluster_job_quota: 0
+    _cluster_post_job_command: ''
+    _cluster_pre_job_command: ''
+    _cluster_submit_options: ''
+    _connect: {}
+    _depends: []
+    _pattern: (.*)
+    _replacement: \1
+    _singularity_container: ''
+    _singularity_options: ''
+    _volatile: false
+    dd-blocksize: 256k
+    filename: null
+    hashing-algorithm: null
+    secure-hash: null
+    uncompress: true
+    url: http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+  type: raw_url_source
+tool_versions:
+  compare_secure_hashes:
+    command: /opt/uap/python_env/bin/python /opt/uap/tools/compare_secure_hashes.py
+      --help
+    exit_code: 0
+    response: "usage: compare_checksums.py [-h] [--version] --algorithm\n        \
+      \                    {md5,sha1,sha224,sha256,sha384,sha512}\n              \
+      \              --secure-hash PROVIDED_HASH_VALUE\n                         \
+      \   file_to_hash\n\nThis script computes a secure hash and compares it with\
+      \ a given hash value. If they do not fit the input file will be renamed and\
+      \ a error message is output.\n\npositional arguments:\n  file_to_hash      \
+      \    file to compare checksums for\n\noptional arguments:\n  -h, --help    \
+      \        show this help message and exit\n  --version             show program's\
+      \ version number and exit\n  --algorithm {md5,sha1,sha224,sha256,sha384,sha512}\n\
+      \                        hashing algorithm to use\n  --secure-hash PROVIDED_HASH_VALUE\n\
+      \                        secure hash used for comparision"
+    used_path: /opt/uap/python_env/bin/python
+  cp:
+    command: cp --version
+    exit_code: 0
+    response: 'cp (GNU coreutils) 8.28
+
+      Copyright (C) 2017 Free Software Foundation, Inc.
+
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+
+      This is free software: you are free to change and redistribute it.
+
+      There is NO WARRANTY, to the extent permitted by law.
+
+
+      Written by Torbjorn Granlund, David MacKenzie, and Jim Meyering.'
+    used_path: /bin/cp
+  curl:
+    command: curl --version
+    exit_code: 0
+    response: "curl 7.71.1 (x86_64-conda-linux-gnu) libcurl/7.71.1 OpenSSL/1.1.1h\
+      \ zlib/1.2.11 libssh2/1.9.0 nghttp2/1.41.0\nRelease-Date: 2020-07-01\nProtocols:\
+      \ dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp scp sftp smb\
+      \ smbs smtp smtps telnet tftp \nFeatures: AsynchDNS GSS-API HTTP2 HTTPS-proxy\
+      \ IPv6 Kerberos Largefile libz NTLM NTLM_WB SPNEGO SSL TLS-SRP UnixSockets"
+    used_path: /venv/bin/curl
+  dd:
+    command: dd --version
+    exit_code: 0
+    response: 'dd (coreutils) 8.28
+
+      Copyright (C) 2017 Free Software Foundation, Inc.
+
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+
+      This is free software: you are free to change and redistribute it.
+
+      There is NO WARRANTY, to the extent permitted by law.
+
+
+      Written by Paul Rubin, David MacKenzie, and Stuart Kemp.'
+    used_path: /bin/dd
+  mkdir:
+    command: mkdir --version
+    exit_code: 0
+    response: 'mkdir (GNU coreutils) 8.28
+
+      Copyright (C) 2017 Free Software Foundation, Inc.
+
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+
+      This is free software: you are free to change and redistribute it.
+
+      There is NO WARRANTY, to the extent permitted by law.
+
+
+      Written by David MacKenzie.'
+    used_path: /bin/mkdir
+  pigz:
+    command: pigz --version
+    exit_code: 0
+    response: pigz 2.3.4
+    used_path: /venv/bin/pigz
+uap_version: 2.0
