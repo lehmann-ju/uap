@@ -1,0 +1,70 @@
+# This configuration downloads the sequencing data analysed in:
+# High-Resolution Profiling of Histone Methylations in the Human Genome
+# Barski et al., Cell, 2007
+
+################################################################################
+## Cluster Section                                                            ##
+## =====================                                                      ##
+##                                                                            ##
+## - uncomment/adapt as required                                              ##
+################################################################################
+
+# cluster:
+#     # example for SLURM grid engine
+#     default_submit_options: "--cpus-per-task=#{CORES} --ntasks=1"
+#     # example for UGE/SGE respectively OGS
+#     default_submit_options: "-pe smp #{CORES} -cwd -S /bin/bash -l h_rt=24:00:00 -l h_vmem=6G"
+#     default_pre_job_command: "echo 'Run Started!'"
+#     default_post_job_command: "echo 'Run Finished!'"
+#     default_job_quota: 5
+
+################################################################################
+## Destination Path Section                                                   ##
+## ========================                                                   ##
+##                                                                            ##
+## - directory where analysis results get stored                              ##
+################################################################################
+
+destination_path: /uap/example-configurations/
+
+################################################################################
+## Steps Section                                                              ##
+## =============                                                              ##
+##                                                                            ##
+## - define analysis steps here                                               ##
+################################################################################
+
+steps:
+    ##############################################################
+    ## Download Steps                                           ##
+    ##                                                          ##
+    ## - only get H3K4me1 and H3K4me3 data from Barski et al.   ##
+    ##############################################################
+
+    SRR001414_download (raw_url_source):
+        url: http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
+        uncompress: yes
+        
+################################################################################
+## Tools Section                                                              ##
+## =============                                                              ##
+##                                                                            ##
+## - define used tools here                                                   ##
+## - for module system usage see documentation                                ##
+################################################################################
+
+tools:
+    ##################
+    # External Tools #
+    ##################
+
+    # URL: http://zlib.net/pigz/
+    pigz: 
+        path: pigz
+        get_version: --version
+        exit_code: 0
+
+    curl:
+        path: curl
+        get_version: --version
+        exit_code: 0     

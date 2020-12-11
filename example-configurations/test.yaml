@@ -1,0 +1,129 @@
+# This configuration downloads the sequencing data analysed in:
+# High-Resolution Profiling of Histone Methylations in the Human Genome
+# Barski et al., Cell, 2007
+
+################################################################################
+## Cluster Section                                                            ##
+## =====================                                                      ##
+##                                                                            ##
+## - uncomment/adapt as required                                              ##
+################################################################################
+
+# cluster:
+#     # example for SLURM grid engine
+#     default_submit_options: "--cpus-per-task=#{CORES} --ntasks=1"
+#     # example for UGE/SGE respectively OGS
+#     default_submit_options: "-pe smp #{CORES} -cwd -S /bin/bash -l h_rt=24:00:00 -l h_vmem=6G"
+#     default_pre_job_command: "echo 'Run Started!'"
+#     default_post_job_command: "echo 'Run Finished!'"
+#     default_job_quota: 5
+
+################################################################################
+## Destination Path Section                                                   ##
+## ========================                                                   ##
+##                                                                            ##
+## - directory where analysis results get stored                              ##
+################################################################################
+
+destination_path: /opt/uap/
+
+################################################################################
+## Steps Section                                                              ##
+## =============                                                              ##
+##                                                                            ##
+## - define analysis steps here                                               ##
+################################################################################
+
+steps:
+    ##################
+    ## Source steps ##
+    ##################
+
+    fastq_source:
+        sample_to_files_map:
+            H3K4me3:
+               - /uap/example-configurations/SRR001414_download/download/SRR001414.fastq
+        paired_end: no
+        first_read: .fastq
+        
+    ######################
+    ## Processing steps ##
+    ######################
+        
+    merge_fastq_files:
+        _depends: fastq_source
+
+    # Quality control of sequencing run
+    merge_fastqc (fastqc):
+        _depends: merge_fastq_files
+
+    merge_fastx_quality_stats (fastx_quality_stats):
+        _depends: merge_fastq_files
+
+    cutadapt:
+        _depends: fastq_source
+        ## Reading adapters from FASTA file introduced with v1.5
+        adapter-file: /uap/example-configurations/example-data/adapter_sequences/adapter_sequences_Barski_2007.mfa
+        use_reverse_complement: False
+        adapter-type: -a
+        fix_qnames: false
+
+    fix_cutadapt:
+        _depends: cutadapt
+
+    fix_cutadapt_fastqc (fastqc):
+        _depends: fix_cutadapt
+
+    fix_cutadapt_fastx_quality_stats (fastx_quality_stats):
+        _depends: fix_cutadapt
+        
+    fastqc:
+      _depends: fastq_source
+
+    fastx_quality_stats:
+      _depends: fastq_source
+        
+################################################################################
+## Tools Section                                                              ##
+## =============                                                              ##
+##                                                                            ##
+## - define used tools here                                                   ##
+## - for module system usage see documentation                                ##
+################################################################################
+
+tools:
+    ##################
+    # External Tools #
+    ##################
+    
+    # URL: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+    fastqc:
+        path: fastqc
+        get_version: --version
+        exit_code: 0
+        
+    # URL: http://zlib.net/pigz/
+    pigz: 
+        path: pigz
+        get_version: --version
+        exit_code: 0
+
+    #curl:
+     #   path: curl
+      #  get_version: --version
+       # exit_code: 0 
+        
+    # URL: http://hannonlab.cshl.edu/fastx_toolkit/
+    fastx_quality_stats:
+        path: fastx_quality_stats
+        get_version: -h
+        exit_code: 1
+
+    # URL: https://github.com/marcelm/cutadapt
+    cutadapt:
+        path: cutadapt
+        get_version: --version
+        exit_code: 0
+    
+
+ 
