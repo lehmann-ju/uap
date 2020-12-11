@@ -47,7 +47,7 @@ Stage: build
     conda activate uap_python3_v1.0
 
     # Das repo von uap für Python3 clonen
-    git clone --single-branch --branch fraunhofer_uge_support https://github.com/yigbt/uap.git /opt/uap
+    git clone --single-branch --branch patch-3 https://github.com/lehmann-ju/uap.git /opt/uap
     
     # install uap
     ./opt/uap/bootstrap.sh
