@@ -85,12 +85,8 @@ EOF
 
 %test
 
-    grep -q NAME=\"Ubuntu\" /etc/os-release
-    if [ $? -eq 0 ]; then
-        echo "Container base is Ubuntu as expected."
-    else
-        echo "Container base is not Ubuntu."
-    fi
+    echo "Testing uap"
+    /bin/bash -c "source /.start_uap_python3_v1.0; uap /uap/example-configurations/test-downloady.yaml run-locally; uap /uap/example-configurations/test.yaml run-locally"
 
 %labels
 
