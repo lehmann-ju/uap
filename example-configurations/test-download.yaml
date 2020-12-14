@@ -42,8 +42,8 @@ steps:
     ## - only get H3K4me1 and H3K4me3 data from Barski et al.   ##
     ##############################################################
 
-      SRR001035_download (raw_url_source):
-        url: http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001035/SRR001035.fastq.gz
+    SRR001414_download (raw_url_source):
+        url: http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR001/SRR001414/SRR001414.fastq.gz
         uncompress: yes
         
 ################################################################################
