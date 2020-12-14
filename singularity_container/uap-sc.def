@@ -76,8 +76,7 @@ EOF
 
     /bin/bash <<EOF
 . /usr/local/miniconda3/etc/profile.d/conda.sh
-conda activate uap_python3_v1.0
-
+conda activate /venv
 uap $@ 
 EOF
 
@@ -86,7 +85,7 @@ EOF
 %test
     
     echo "Testing uap"
-    /bin/bash -c "source /.start_uap_python3_v1.0; uap --version; uap /opt/uap/example-configurations/test-download.yaml run-locally; "
+    /bin/bash -c "conda activate /venv; uap --version; uap /opt/uap/example-configurations/test-download.yaml run-locally; "
     
 %labels
 
