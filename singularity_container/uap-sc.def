@@ -85,7 +85,8 @@ EOF
 %test
     
     echo "Testing uap"
-    /bin/bash -c "conda activate /venv; uap --version; uap /opt/uap/example-configurations/test-download.yaml run-locally; "
+    conda create --name test -c conda-forge -c anaconda curl=7.7.1.1 pigz=2.3.4
+    /bin/bash -c "conda activate test; uap --version; uap /opt/uap/example-configurations/test-download.yaml run-locally; "
     
 %labels
 
