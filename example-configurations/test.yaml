@@ -42,9 +42,9 @@ steps:
     fastq_source:
         sample_to_files_map:
             H3K4me3:
-               - /uap/example-configurations/SRR001414_download/download/SRR001414.fastq
+               - /opt/uap/example-configurations/example-data/singularity_test/SRR001414_download/download/SRR001414.fastq.gz
         paired_end: no
-        first_read: .fastq
+        first_read: .fastq.gz
         
     ######################
     ## Processing steps ##
@@ -63,7 +63,7 @@ steps:
     cutadapt:
         _depends: fastq_source
         ## Reading adapters from FASTA file introduced with v1.5
-        adapter-file: /uap/example-configurations/example-data/adapter_sequences/adapter_sequences_Barski_2007.mfa
+        adapter-file: /opt/uap/example-configurations/example-data/adapter_sequences/adapter_sequences_Barski_2007.mfa
         use_reverse_complement: False
         adapter-type: -a
         fix_qnames: false
