@@ -25,7 +25,7 @@
 ## - directory where analysis results get stored                              ##
 ################################################################################
 
-destination_path: /opt/uap/example-configuration/example-data/singularity_test/
+destination_path: /opt/uap/example-configurations/example-data/singularity_test/
 
 ################################################################################
 ## Steps Section                                                              ##
