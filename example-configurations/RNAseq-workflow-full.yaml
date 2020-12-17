@@ -25,7 +25,7 @@
 ## - directory where analysis results get stored                              ##
 ################################################################################
 
-destination_path: example-out/2014-Mercer_et_al
+destination_path: /data/bioinf/projects/data/2020_Singularity_testing/testlehmanju
 
 ################################################################################
 ## Constants Section                                                          ##
@@ -38,25 +38,25 @@ constants:
     # 1.  Genome Information:
     # 1.1 Complete Sequence (FASTA)
     - &genome
-        genomes/animalia/chordata/mammalia/primates/homo_sapiens/hg19/hg19_UCSC_complete_genome/hg19_all_chr_UCSC-all_sequences-Tc5RkRKM/hg19_all_chr_UCSC-all_sequences.fasta
+        "/data/db/ebi/pub/databases/gencode/Gencode_human/release_29/GRCh38.primary_assembly.genome/2019-04-08/GRCh38.primary_assembly.genome.fa"
 
     # 1.2 FASTA index
     - &genome_faidx 
-        genomes/animalia/chordata/mammalia/primates/homo_sapiens/hg19/hg19_samtools_faidx/hg19_all_chr_UCSC-all_sequences-v08iKi37/hg19_all_chr_UCSC-all_sequences.fasta.fai
+        "/data/galaxy_server/galaxy/tool-data/hg38_gencode29/sam_indexes/hg38_gencode29/GRCh38.primary_assembly.genome.fa.fai"
 
     # 2.  Mapping Indices:
-    # 2.1 Bowtie2
-    - &bowtie2_genome_index
-        genomes/animalia/chordata/mammalia/primates/homo_sapiens/hg19/hg19_bowtie2_index/bowtie2_index-hg19_all_chr_UCSC-all_sequences-4bnBZlNy/bowtie2_index-hg19_all_chr_UCSC-all_sequences
+    # 2.1 Hisat2 index
+    - &ht2-idx
+        "/data/galaxy_server/galaxy/tool-data/hg38_gencode29/hisat2_index/hg38_gencode29/hg38_gencode29"
 
     # 2.2 Segemehl
-    - &segemehl_genome_index
-        genomes/animalia/chordata/mammalia/primates/homo_sapiens/hg19/hg19_segemehl_index/segemehl_index-hg19_all_chr_UCSC-all_sequences-dbEMdEVV/segemehl_index-hg19_all_chr_UCSC-all_sequences.idx
+ #   - &segemehl_genome_index
+ #       genomes/animalia/chordata/mammalia/primates/homo_sapiens/hg19/hg19_segemehl_index/segemehl_index-hg19_all_chr_UCSC-all_sequences-dbEMdEVV/segemehl_index-hg19_all_chr_UCSC-all_sequences.idx
 
     # 3.  Gencode Annotation:
     # 3.1 Version 24
     - &gencode_v19_annotation_gtf
-        genomes/animalia/chordata/mammalia/primates/homo_sapiens/gencode/v19/gencode_v19_annotation/gencode.v19.annotation.gtf
+        "/data/db/ebi/pub/databases/gencode/Gencode_human/release_29/gencode.v29/2018-11-07/gencode.v29.primary_assembly.annotation.gtf"
 
 ################################################################################
 ## Steps Section                                                              ##
@@ -77,26 +77,31 @@ steps:
         paired_end: yes
         first_read: _1.fastq
         second_read: _2.fastq
-
+        
     fastqc:
       _depends: fastq_source
 
     fastx_quality_stats:
       _depends: fastq_source
 
-    tophat2:
+    hisat2:
         _depends: fastq_source
-        library_type: fr-secondstrand
-        index: *bowtie2_genome_index
+        _cluster_submit_options: "-pe smp 4 -cwd -S /bin/bash -l h_rt=168:00:00 -l h_vmem=8G"
+        index: *ht2-idx
+        cores: 4
+        library_type: "fr"
+        rna-strandness: "RF"
+        dta: true
+#         _singularity_container: '/gloabl/apps/uap/uap.sif' #while using a seperated singularity container for this step, set the path for the singularity container
 
-    sort_tophat2_by_pos (sam_to_sorted_bam):
-        _depends: tophat2
+    sort_hisat2_by_pos (sam_to_sorted_bam):
+        _depends: hisat2
         sort-by-name: no
         genome-faidx: *genome_faidx
         temp-sort-dir: '/tmp/'
 
-    count_genes_tophat2 (htseq_count):
-        _depends: sort_tophat2_by_pos
+    count_genes_hisat2 (htseq_count):
+        _depends: sort_hisat2_by_pos
         feature-file: *gencode_v19_annotation_gtf
         order: pos
         stranded: 'yes'
@@ -104,16 +109,22 @@ steps:
         type: exon
         idattr: gene_id
 
-    cufflinks_tophat2 (cufflinks):
-        _depends: sort_tophat2_by_pos
+    cufflinks_hisat2 (cufflinks):
+        _depends: sort_hisat2_by_pos
         library-type: fr-secondstrand
         mask-file: *gencode_v19_annotation_gtf
+        
+    segemehl_index (segemehl_generate_index):
+        _depends: *genome
+        _connect: 
+            in/reference_sequence: human_genome/raw
+        index-basename: humane_genome_index
 
 # Uncomment the following steps if you created the segemehl genome index
     segemehl:
         _depends: fastq_source
-        genome: *genome
-        index: *segemehl_genome_index
+        genome: human_genome
+        index: human_genome_index
 
     s2c:
         _depends: segemehl
@@ -189,9 +200,9 @@ tools:
         get_version: ''
         exit_code: 255
 
-    # URL: http://ccb.jhu.edu/software/tophat/index.shtml
-    tophat2:
-        path: tophat2
+    # URL: http://daehwankimlab.github.io/hisat2/
+    hisat2:
+        path: hisat2
         get_version: --version
         exit_code: 0
 
